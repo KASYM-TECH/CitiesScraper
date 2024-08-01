@@ -8,8 +8,8 @@ package main
 //err = trace.Start(f)
 //defer trace.Stop()
 import (
-	"CitiesScratcher/manager"
-	"CitiesScratcher/model"
+	"CitiesScraper/manager"
+	"CitiesScraper/model"
 	"cmp"
 	"context"
 	"github.com/gocarina/gocsv"
@@ -26,7 +26,7 @@ func handleError(err error) {
 
 func main() {
 	eg, ctx := errgroup.WithContext(context.Background())
-	scratcher := NewScratcher()
+	scraper := NewScratcher()
 
 	var countryCurrDto *model.CountriesCurrencyIsoDto
 	var countryCodesDto *model.CountriesCodesDto
@@ -34,17 +34,17 @@ func main() {
 
 	eg.Go(func() error {
 		var err error
-		countryCurrDto, err = scratcher.GetCountryCurrencyIso(ctx)
+		countryCurrDto, err = scraper.GetCountryCurrencyIso(ctx)
 		return err
 	})
 	eg.Go(func() error {
 		var err error
-		countryCodesDto, err = scratcher.GetCountriesDialCodes(ctx)
+		countryCodesDto, err = scraper.GetCountriesDialCodes(ctx)
 		return err
 	})
 	eg.Go(func() error {
 		var err error
-		countryCitiesDto, err = scratcher.GetCountryCities(ctx)
+		countryCitiesDto, err = scraper.GetCountryCities(ctx)
 		return err
 	})
 

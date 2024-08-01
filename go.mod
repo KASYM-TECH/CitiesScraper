@@ -1,4 +1,4 @@
-module CitiesScratcher
+module CitiesScraper
 
 go 1.22
 

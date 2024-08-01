@@ -1,7 +1,7 @@
 package manager
 
 import (
-	"CitiesScratcher/model"
+	"CitiesScraper/model"
 	"sync/atomic"
 )
 

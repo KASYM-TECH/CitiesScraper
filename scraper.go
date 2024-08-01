@@ -1,22 +1,22 @@
 package main
 
 import (
-	"CitiesScratcher/model"
+	"CitiesScraper/model"
 	"context"
 	"encoding/json"
 	"io"
 	"net/http"
 )
 
-type Scratcher struct {
+type Scraper struct {
 	client *http.Client
 }
 
-func NewScratcher() *Scratcher {
-	return &Scratcher{client: http.DefaultClient}
+func NewScratcher() *Scraper {
+	return &Scraper{client: http.DefaultClient}
 }
 
-func (scr *Scratcher) GetCountryCurrencyIso(ctx context.Context) (*model.CountriesCurrencyIsoDto, error) {
+func (scr *Scraper) GetCountryCurrencyIso(ctx context.Context) (*model.CountriesCurrencyIsoDto, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", "https://countriesnow.space/api/v0.1/countries/currency", nil)
 	if err != nil {
 		return nil, err
@@ -42,7 +42,7 @@ func (scr *Scratcher) GetCountryCurrencyIso(ctx context.Context) (*model.Countri
 	return countries, err
 }
 
-func (scr *Scratcher) GetCountriesDialCodes(ctx context.Context) (*model.CountriesCodesDto, error) {
+func (scr *Scraper) GetCountriesDialCodes(ctx context.Context) (*model.CountriesCodesDto, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", "https://countriesnow.space/api/v0.1/countries/codes", nil)
 	if err != nil {
 		return nil, err
@@ -68,7 +68,7 @@ func (scr *Scratcher) GetCountriesDialCodes(ctx context.Context) (*model.Countri
 	return countries, err
 }
 
-func (scr *Scratcher) GetCountryCities(ctx context.Context) (*model.CountriesCityDto, error) {
+func (scr *Scraper) GetCountryCities(ctx context.Context) (*model.CountriesCityDto, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", "https://countriesnow.space/api/v0.1/countries", nil)
 	if err != nil {
 		return nil, err
